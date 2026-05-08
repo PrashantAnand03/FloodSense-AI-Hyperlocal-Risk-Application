@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  
+  html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background-color: #050d1a;
+    color: #e2e8f0;
+    font-family: 'Inter', system-ui, sans-serif;
+    overflow: hidden;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0a1628;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1e3a6e;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2aa3f5;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-dark-800/80 backdrop-blur-md border border-white/10 rounded-xl;
+  }
+
+  .glass-card-hover {
+    @apply glass-card hover:border-brand-500/40 transition-all duration-300;
+  }
+
+  .risk-badge-low {
+    @apply bg-risk-low/20 text-risk-low border border-risk-low/40 px-2 py-0.5 rounded-full text-xs font-semibold;
+  }
+
+  .risk-badge-medium {
+    @apply bg-risk-medium/20 text-risk-medium border border-risk-medium/40 px-2 py-0.5 rounded-full text-xs font-semibold;
+  }
+
+  .risk-badge-high {
+    @apply bg-risk-high/20 text-risk-high border border-risk-high/40 px-2 py-0.5 rounded-full text-xs font-semibold animate-pulse-slow;
+  }
+
+  .btn-primary {
+    @apply bg-brand-600 hover:bg-brand-500 text-white font-semibold px-4 py-2 rounded-lg
+           transition-all duration-200 hover:shadow-glow-blue active:scale-95;
+  }
+
+  .btn-ghost {
+    @apply bg-transparent hover:bg-white/10 text-slate-300 hover:text-white 
+           px-4 py-2 rounded-lg transition-all duration-200 border border-white/10;
+  }
+
+  .input-dark {
+    @apply bg-dark-700 border border-white/10 text-white placeholder-slate-500
+           rounded-lg px-4 py-2.5 w-full focus:outline-none focus:border-brand-500
+           focus:ring-2 focus:ring-brand-500/20 transition-all duration-200;
+  }
+
+  .stat-card {
+    @apply glass-card p-4 flex flex-col gap-1;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-brand-400 to-brand-200 bg-clip-text text-transparent;
+  }
+}
+
+/* Leaflet overrides */
+.leaflet-container {
+  background: #0a1628 !important;
+  height: 100%;
+  width: 100%;
+}
+
+.leaflet-popup-content-wrapper {
+  background: #0f2040 !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  border-radius: 12px !important;
+  color: #e2e8f0 !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5) !important;
+}
+
+.leaflet-popup-tip {
+  background: #0f2040 !important;
+}
+
+.leaflet-popup-close-button {
+  color: #94a3b8 !important;
+}
+
+.leaflet-control-zoom {
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  border-radius: 8px !important;
+  overflow: hidden;
+}
+
+.leaflet-control-zoom a {
+  background: #0f2040 !important;
+  color: #e2e8f0 !important;
+  border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background: #152a54 !important;
+}
+
+.leaflet-control-attribution {
+  background: rgba(5, 13, 26, 0.8) !important;
+  color: #475569 !important;
+  font-size: 10px !important;
+}
+
+.leaflet-control-attribution a {
+  color: #64748b !important;
+}
+
+/* Custom marker pulse */
+.risk-marker-high .leaflet-marker-icon {
+  filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.8));
+}
+
+.risk-pulse {
+  position: relative;
+}
+
+.risk-pulse::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Scrollable panels */
+.panel-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
